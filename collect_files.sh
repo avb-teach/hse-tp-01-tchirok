@@ -1,13 +1,16 @@
 #!/bin/bash
 
 if [ "$#" -ne 2 ]; then
-  echo "Usage: $0 <input_dir> <output_dir>"
+  echo "Неккоректное количество аргументов"
   exit 1
 fi
 
-mkdir -p "$2"
+input_dir="$1"
+output_dir="$2"
 
-find "$1" -type f -print0  | while IFS=  read -r -d '' file; do
-  cp "$file" "$2"
+mkdir -p "$output_dir"
+
+find "$input_dir" -type f -print0  | while IFS=  read -r -d '' file; do
+  cp "$file" "$output_dir"
 done
 
